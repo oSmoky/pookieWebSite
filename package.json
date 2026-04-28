@@ -1,0 +1,22 @@
+{
+  "name": "angelina-wrapped",
+  "version": "1.0.0",
+  "description": "A cinematic React birthday gift site.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "lucide-react": "^1.11.0",
+    "matter-js": "^0.20.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "vite": "^8.0.10"
+  }
+}
