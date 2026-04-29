@@ -17,6 +17,7 @@ import { useCounter } from "./hooks/useCounter.js";
 import { useScrollAudio } from "./hooks/useScrollAudio.js";
 import {
   chapters,
+  colorJars,
   coupons,
   letterParagraphs,
   photos,
@@ -36,7 +37,7 @@ const copy = {
     openingButton: "Открыть письмо",
     previewFor: "for Angelina",
     previewReady: "open when you are ready",
-    nav: { time: "Время", chapters: "Главы", gallery: "Фото", letter: "Письмо" },
+    nav: { colors: "Цвета", time: "Время", chapters: "Главы", gallery: "Фото", letter: "Письмо" },
     musicAria: "Музыка",
     nowPlaying: "now playing",
     heroEyebrow: "Birthday edition · 2026",
@@ -44,6 +45,10 @@ const copy = {
       "Маленький снежный фильм про нас: любимые треки, фотографии, моменты, которые хочется пересматривать, и я, который очень сильно тебя любит.",
     heroTags: ["greenish brown eyes", "06.10.2025", "playlist walks"],
     heroNote: "my favorite person",
+    colorsEyebrow: "Aura palette",
+    colorsTitle: "Цвета, которыми я тебя чувствую",
+    colorsLead:
+      "Шесть маленьких баночек с тем, как Ангелина у меня ассоциируется: любовь, смех, взгляд, шалости и то спокойствие, которое появляется рядом с ней.",
     timeEyebrow: "Track 02",
     timeTitle: "Мы вместе уже",
     timeNote: "С 6 октября 2025 года, примерно с 19:30.",
@@ -79,7 +84,7 @@ const copy = {
     openingButton: "Open the letter",
     previewFor: "for Angelina",
     previewReady: "open when you are ready",
-    nav: { time: "Time", chapters: "Chapters", gallery: "Photos", letter: "Letter" },
+    nav: { colors: "Colors", time: "Time", chapters: "Chapters", gallery: "Photos", letter: "Letter" },
     musicAria: "Music",
     nowPlaying: "now playing",
     heroEyebrow: "Birthday edition · 2026",
@@ -87,6 +92,10 @@ const copy = {
       "A tiny snowy movie about us: favorite tracks, photos, moments I want to replay, and me loving you very, very much.",
     heroTags: ["greenish brown eyes", "10.06.2025", "playlist walks"],
     heroNote: "my favorite person",
+    colorsEyebrow: "Aura palette",
+    colorsTitle: "The colors I feel you in",
+    colorsLead:
+      "Six tiny jars for the way Angelina feels to me: love, laughter, her look, our playful chaos, and the calm that appears when she is close.",
     timeEyebrow: "Track 02",
     timeTitle: "We have been together for",
     timeNote: "Since October 6, 2025, around 7:30 PM.",
@@ -127,7 +136,7 @@ function localizeItems(items, lang) {
   return items.map((item) => {
     const next = { ...item };
 
-    ["kicker", "title", "text", "label", "detail", "caption"].forEach((key) => {
+    ["kicker", "title", "text", "label", "detail", "caption", "name", "description"].forEach((key) => {
       if (key in next) next[key] = byLang(next[key], lang);
     });
 
@@ -203,6 +212,7 @@ function Header({ activeTrack, onSoundClick, isMuted, isUnlocked, t }) {
       </a>
 
       <nav className="nav-links" aria-label="Sections">
+        <a href="#colors">{t.nav.colors}</a>
         <a href="#time">{t.nav.time}</a>
         <a href="#chapters">{t.nav.chapters}</a>
         <a href="#gallery">{t.nav.gallery}</a>
@@ -256,7 +266,7 @@ function Hero({ t }) {
             <span key={tag}>{tag}</span>
           ))}
         </div>
-        <a className="scroll-cue" href="#time" aria-label="Next">
+        <a className="scroll-cue" href="#colors" aria-label="Next">
           <ChevronDown size={23} />
         </a>
       </div>
@@ -276,6 +286,64 @@ function Hero({ t }) {
           <span>01</span>
           <strong>{t.heroNote}</strong>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function ColorJarsScene({ jars, t }) {
+  return (
+    <section className="scene color-jars-scene" id="colors" data-scene data-track="1">
+      <div className="scene-heading reveal">
+        <p className="eyebrow">{t.colorsEyebrow}</p>
+        <h2>{t.colorsTitle}</h2>
+        <p>{t.colorsLead}</p>
+      </div>
+
+      <div className="jars-lab">
+        {jars.map((jar, index) => (
+          <article
+            className={`aura-jar-card reveal ${jar.shimmer ? "is-shimmer" : ""}`}
+            style={{
+              "--delay": `${index * 80}ms`,
+              "--jar-a": jar.colors[0],
+              "--jar-b": jar.colors[1],
+              "--jar-c": jar.colors[2],
+              "--jar-glow": jar.glow,
+            }}
+            key={jar.name}
+          >
+            <div className="jar-stage" aria-hidden="true">
+              <div className="jar-glow" />
+              <div className="glass-jar">
+                <div className="jar-lid" />
+                <div className="jar-neck" />
+                <div className="jar-body">
+                  <div className="jar-liquid" />
+                  <div className="jar-sparkle" />
+                  <div className="firefly-field">
+                    {Array.from({ length: jar.fireflies }, (_, flyIndex) => (
+                      <span
+                        key={flyIndex}
+                        style={{
+                          "--fly": flyIndex,
+                          "--fly-left": `${14 + ((flyIndex * 23 + index * 11) % 72)}%`,
+                          "--fly-top": `${15 + ((flyIndex * 17 + index * 9) % 66)}%`,
+                          "--fly-delay": `${(flyIndex % 7) * -0.42}s`,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="jar-copy">
+              <span>{pad(index + 1)}</span>
+              <h3>{jar.name}</h3>
+              <p>{jar.description}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -699,6 +767,7 @@ export default function App() {
   const { activeTrack, audioNote, isMuted, isUnlocked, toggleMute, unlock } = useScrollAudio(tracks);
 
   const localizedChapters = useMemo(() => localizeItems(chapters, lang), [lang]);
+  const localizedColorJars = useMemo(() => localizeItems(colorJars, lang), [lang]);
   const localizedStats = useMemo(() => localizeItems(wrappedStats, lang), [lang]);
   const localizedPhotos = useMemo(() => localizeItems(photos, lang), [lang]);
   const localizedLetter = letterParagraphs[lang] ?? letterParagraphs.ru;
@@ -748,6 +817,7 @@ export default function App() {
         )}
         <main>
           <Hero t={t} />
+          <ColorJarsScene jars={localizedColorJars} t={t} />
           <TimeScene lang={lang} t={t} />
           <WrappedStats stats={localizedStats} t={t} />
           <ChaptersScene items={localizedChapters} t={t} />

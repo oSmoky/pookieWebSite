@@ -124,6 +124,70 @@ export const wrappedStats = [
   },
 ];
 
+export const colorJars = [
+  {
+    name: { ru: "Ее аура", en: "Her Aura" },
+    description: {
+      ru: "Красно-фиолетовая, теплая и немного магическая. Как первое чувство, которое сложно нормально объяснить.",
+      en: "Red-violet, warm, and a little magical. Like the first feeling that is hard to explain properly.",
+    },
+    colors: ["#ff315d", "#8b3dff", "#ffd1dc"],
+    glow: "rgba(255, 49, 93, 0.38)",
+    fireflies: 9,
+  },
+  {
+    name: { ru: "Когда чувствую ее любовь", en: "When I Feel Her Love" },
+    description: {
+      ru: "Желто-оранжевая, мягкая и греющая. Будто внутри становится светлее просто от того, что она рядом.",
+      en: "Yellow-orange, soft, and warming. Like everything inside gets brighter just because she is near.",
+    },
+    colors: ["#ffd45a", "#ff8a1f", "#fff2b8"],
+    glow: "rgba(255, 169, 48, 0.38)",
+    fireflies: 10,
+  },
+  {
+    name: { ru: "Когда мы шалим", en: "When We Get Playful" },
+    description: {
+      ru: "Неоново-розовая, быстрая и смешная. Цвет наших маленьких глупостей, которые потом хочется вспоминать.",
+      en: "Neon pink, fast, and funny. The color of our little silly moments that I want to replay later.",
+    },
+    colors: ["#ff2bd6", "#ff6bb5", "#7b5cff"],
+    glow: "rgba(255, 43, 214, 0.34)",
+    fireflies: 12,
+  },
+  {
+    name: { ru: "Когда она смотрит на меня", en: "When She Looks at Me" },
+    description: {
+      ru: "Зеленая и дружелюбная. Такой взгляд, после которого в голове становится тихо и хорошо.",
+      en: "Green and kind. The kind of look that makes my mind feel quiet and safe.",
+    },
+    colors: ["#56f0a8", "#b9ffd8", "#74d8ff"],
+    glow: "rgba(86, 240, 168, 0.34)",
+    fireflies: 11,
+  },
+  {
+    name: { ru: "Когда она смеется", en: "When She Laughs" },
+    description: {
+      ru: "Перелив зеленого, желтого и розового. Радость, которая не стоит на месте и заражает все вокруг.",
+      en: "A shimmer of green, yellow, and pink. Joy that never stays still and lights up everything around.",
+    },
+    colors: ["#50f091", "#fff15a", "#ff7bc7"],
+    glow: "rgba(255, 241, 90, 0.32)",
+    fireflies: 13,
+    shimmer: true,
+  },
+  {
+    name: { ru: "Когда рядом спокойно", en: "When It Feels Peaceful" },
+    description: {
+      ru: "Снежно-голубая с лавандой. Цвет момента, где ничего не нужно доказывать, потому что она уже рядом.",
+      en: "Snowy blue with lavender. The color of a moment where nothing needs proving because she is already beside me.",
+    },
+    colors: ["#dff0ff", "#82b8ff", "#cfc8ff"],
+    glow: "rgba(130, 184, 255, 0.34)",
+    fireflies: 8,
+  },
+];
+
 export const photos = [
   {
     src: "./photos/photo_2025-09-29_10-49-13.jpg",
